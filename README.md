@@ -1,58 +1,46 @@
-This is an [Expo](https://expo.dev) project.
+# FaithTech Charlotte - Faith Hotspots Mobile
 
-## Get started
+## Getting Started
 
-1. Install dependencies
+1. Install recommended VSCode extensions (when you open the repo in VSCode or Cursor, you should be prompted to install these extensions):
 
-   ```bash
-   npm install
-   ```
+   [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-2. Start the app
+   [Prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-   ```bash
-    npx expo start
-   ```
+1. Get connected to our Expo Application Services (EAS) project - Contact Brad - give him the email that you want to use for your EAS account
 
-In the output, you'll find options to open the app in a
+1. If you're using `nvm` then execute `nvm use`. If not, we recommend Node v22.12.0.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. Next run: `npm install -g expo-cli && npm install -g eas-cli`
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+1. Run `npm install`
+1. Run `eas login` and login with your email and password that you used when you setup your account.
+1. Run `npm run build:android:devclient:remote` or `npm run build:ios:simulator:devclient:remote` (if you're on MacOS)
 
-Install recommended VSCode extensions:
-[ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-[Prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+   Install the results on your emulator or simulator when prompted.
 
-Get connected to EAS project - Contact Brad - give him the email that you want to use for your EAS account
+1. Run `npm run start`
+   Hit 'a' or 'i' to open up the Android emulator or iOS Simulator respectively.
+   The app should automatically open on the emulator/simulator for you.
 
-If you're using `nvm` then execute `nvm use`. If not, we recommend Node v22.12.0.
+## Next Steps:
 
-`npm install -g expo-cli`
-`npm install -g eas-cli`
-
-Run `eas login` and login with your email and password that you used when you setup your account.
-Run `npm run build:android:devclient:remote` or `npm run build:ios:simulator:devclient:remote` (if you're on MacOS)
-Install the results on your emulator or simulator.
-Run `npm run start`
-Hit 'a' or 'i' to open up the Android emulator or iOS Simulator respectively.
-The app should automatically open on the emulator/simulator for you.
-
-Next Steps:
 Work on building the devclient locally.
-Run `npm run build:android:devclient` or `npm run build:ios:simulator:devclient` and install build dependencies as needed.
-At a mimimum, you'll need the Android SDK with at least 1 OS, Emulator and Build tools installed.
-For iOS, you'll need Xcode, an iOS Framework SDK and Simulator installed. Also, you'll need Fastlane for iOS builds.
-Here are the Fastlane docs, there are a couple of ways ti install it. I believe that I just did `brew install fastlane` on my Mac.
-https://docs.fastlane.tools/getting-started/ios/setup/
 
-Customized build commands
+1.  Run `npm run build:android:devclient` or `npm run build:ios:simulator:devclient` and install build dependencies as needed.
 
-Local build commands (these build using your local machine resources/configuration)
-We have a limited number of remote builds per month so local builds are the recommended way to build.
+        At a mimimum, you'll need the Android SDK with at least 1 OS, Emulator and Build tools installed.
+
+    For iOS, you'll need Xcode, an iOS Framework SDK and Simulator installed. Also, you'll need Fastlane for iOS builds.
+    Here are the Fastlane docs, there are a couple of ways to install it. I believe that I just did `brew install fastlane` on my Mac.
+    https://docs.fastlane.tools/getting-started/ios/setup/
+
+## Customized build commands
+
+#### Local build commands (these build using your local machine resources/configuration)
+
+We have a limited number of remote builds per month, so local builds are the recommended way to build.
 It does take additional effort to configure your system for local builds though (you need all of the sdks and build tools installed).
 
 ```shell
@@ -64,7 +52,14 @@ The devclient (short for development client) is a native mobile app that hosts t
 
 Since devclients are native apps, they need to be installed on devices (or emulators) just like normal apps that are outside the context of an app store. They need to be side-loaded.
 
-For iOS I do this by plugging my device into my Mac. Opening Finder. Clicking on the device in Finder; this will open an information screen about the device. Open another Finder window and locate your .ipa file in it; it's typically generated/located in the root of your repo. Click, drag and drag the .ipa onto the information screen for your device in the other Finder window. As long as the .ipa has been signed for your device (this is specified during the steps of the build process), the devclient should install on the device.
+For iOS I do this by:
+
+1. Plugging my device into my Mac.
+1. Opening Finder.
+1. Clicking on the device in Finder; this will open an information screen about the device.
+1. Open another Finder window and locate your .ipa file in it; it's typically generated/located in the root of your repo.
+1. Click, drag and drag the .ipa onto the information screen for your device in the other Finder window.
+1. As long as the .ipa has been signed for your device (this is specified during the steps of the build process), the devclient should install on the device.
 
 TODO: Include instructions on where to look if the app does not install correctly. In my experience, you don't typically receive an error; it just ignores the drop. You have to go looking for the error. Maybe in the Organizer (in xcode) somewhere? I can't remember.
 
@@ -78,6 +73,7 @@ List android devices
 Install apk on Android device
 
 `adb install build-1685398802155.apk`
+
 `adb -s deviceid install build-####.apk`
 
 The iOS Simulator is different from normal iOS devices, you cannot install .ipa files on it. So you need a different build artifact to install on iOS Simulators, hence the below command.
@@ -93,14 +89,13 @@ npm run build:android:production
 npm run build:ios:production
 ```
 
-The below command generates a iOS preview build (a .ipa). Preview builds are typically distinguished from Production builds somehow visually (tag on the icon, different color scheme or something). These are typically used for distributing builds to testers via TestFlight. Their devices need to be configured in the Apple Developer account first though and you'll need to specify the appropriate device ids for the build during the build steps.
+The below command generates a iOS preview build (an .ipa). Preview builds are typically distinguished from Production builds somehow visually (tag on the icon, different color scheme or something). These are typically used for distributing builds to testers via TestFlight. Their devices need to be configured in the Apple Developer account first though and you'll need to specify the appropriate device ids for the build during the build steps.
 
 `npm run build:ios:preview`
 
-Remote build commands (these build using Expo Application Services (EAS) build servers)
-We have 30 remote builds per month as we're on the free plan. These builds can also have rather long queue lines/wait times.
-You also need to have access to our Expo Application Services project to do this. Contact Brad for access. You'll need to provide an email address to use for your EAS account.
-The remote versions of the commands generate the same output. It's just on Expo's servers. The cli provides you a way to download the artifacts.
+#### Remote build commands (these build using Expo Application Services (EAS) build servers)
+
+We have 30 remote builds per month as we're on the free plan. These builds can also have rather long queue lines/wait times. The remote versions of the commands generate the same output. It's just on Expo's servers. The cli provides you a way to download/install the artifacts.
 
 ```shell
 npm run build:android:devclient:remote
@@ -111,6 +106,12 @@ npm run build:ios:production:remote
 npm run build:ios:preview:remote
 ```
 
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+
+### Onboarding for iOS real device builds
+
+Get connected to iOS developer account - Contact Brad
+
 ## Learn more
 
 To learn more about developing your project with Expo, look at the following resources:
@@ -120,10 +121,7 @@ To learn more about developing your project with Expo, look at the following res
 
 ## Join the community
 
-Join our community of developers creating universal apps.
+Join Expo's community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-
-Onboarding for iOS real device builds
-Get connected to iOS developer account - Contact Brad
